@@ -19,7 +19,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ListItemFragment extends Fragment{
+
+/**
+ * Фрагмент содержащий в себе список пунктов, каждый пункт можно редактировать, так же можно создавать новые пункты
+ * @autor Герман Иванилов
+ * @version 1.0
+ */
+
+public class ListItemFragment extends Fragment {
 
     Preferences preferences;
     FloatingActionButton fab;
@@ -87,12 +94,8 @@ public class ListItemFragment extends Fragment{
     }
 
 
-
     public interface OnFragmentInteractionListener {
     }
-
-
-
 
 
 }

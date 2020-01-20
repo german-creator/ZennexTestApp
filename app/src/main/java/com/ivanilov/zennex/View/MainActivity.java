@@ -1,9 +1,13 @@
 package com.ivanilov.zennex.View;
 
-import android.location.LocationManager;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,39 +19,85 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
 import com.ivanilov.zennex.R;
+import com.ivanilov.zennex.View.Fragment.LanguageFragment;
 import com.ivanilov.zennex.View.Fragment.ListItemFragment;
 import com.ivanilov.zennex.View.Fragment.MapFragment;
 import com.ivanilov.zennex.View.Fragment.ParsingFragment;
 import com.ivanilov.zennex.View.Fragment.ScalingFragment;
 
+import java.util.Locale;
+
+/**
+ * Основное и единственное активити прилоежния, класс содежит NavigationView для перемещения между фрагментами, в layout для этого
+ * класса есть контейнер в котором размещаются все фрагменты, каждый из которых отвечает за конкретный экран. Первый фрагмент, который
+ * видит пользователь это фрагмент для выбора языка, дальше этот фрагмент замещается выбранные экраном в меню.
+ * @autor Герман Иванилов
+ * @version 1.0
+ */
+
 public class MainActivity extends AppCompatActivity implements
-        NavigationView.OnNavigationItemSelectedListener, ListItemFragment.OnFragmentInteractionListener, MapFragment.OnFragmentInteractionListener, ParsingFragment.OnFragmentInteractionListener, ScalingFragment.OnFragmentInteractionListener {
+        NavigationView.OnNavigationItemSelectedListener, ListItemFragment.OnFragmentInteractionListener, MapFragment.OnFragmentInteractionListener, ParsingFragment.OnFragmentInteractionListener, ScalingFragment.OnFragmentInteractionListener, LanguageFragment.OnFragmentInteractionListener {
 
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     FragmentManager fragmentManager = getSupportFragmentManager();
     NavigationView navigationView;
-    ListItemFragment fragment;
-    LocationManager locationManager;
-
-
-
+    FragmentTransaction fragmentTransaction;
+    private SharedPreferences preferences;
+    private Locale locale;
+    private String lang;
+    Context context;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        lang = preferences.getString("lang", "default");
+        if (lang.equals("default")) {
+            lang = getResources().getConfiguration().locale.getCountry();
+        }
+        locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, null);
+
         setContentView(R.layout.activity_main);
 
         toolbar = findViewById(R.id.toolbar);
-
+        context = getApplicationContext();
         drawerLayout = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.navigation_view);
 
+
+        LanguageFragment languageFragment = new LanguageFragment();
+        fragmentTransaction = fragmentManager
+                .beginTransaction();
+
+        fragmentTransaction.add(R.id.container, languageFragment);
+        fragmentTransaction.commit();
+
+
+        navigationView.getHeaderView(0).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LanguageFragment languageFragment = new LanguageFragment();
+                fragmentTransaction = fragmentManager
+                        .beginTransaction();
+
+                fragmentTransaction.replace(R.id.container, languageFragment);
+                fragmentTransaction.commit();
+
+                drawerLayout.closeDrawer(Gravity.LEFT);
+
+            }
+        });
+
+
         navigationView.setNavigationItemSelectedListener(this);
-
-
         setSupportActionBar(toolbar);
+
 
     }
 
@@ -66,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-        FragmentTransaction fragmentTransaction = fragmentManager
+        fragmentTransaction = fragmentManager
                 .beginTransaction();
 
 
@@ -114,8 +164,8 @@ public class MainActivity extends AppCompatActivity implements
     public void onBackPressed() {
         FragmentManager fm = getSupportFragmentManager();
         OnBackPressed backPressedListener = null;
-        for (Fragment fragment: fm.getFragments()) {
-            if (fragment instanceof  OnBackPressed) {
+        for (Fragment fragment : fm.getFragments()) {
+            if (fragment instanceof OnBackPressed) {
                 backPressedListener = (OnBackPressed) fragment;
                 break;
             }
@@ -129,22 +179,14 @@ public class MainActivity extends AppCompatActivity implements
     }
 
 
-
-    public void getOldFragment() {
-        // Восстанавливаем уже созданный фрагмент
-        fragment = (ListItemFragment) fragmentManager.findFragmentByTag("fragment");
-
-        if (fragment != null) {
-
-            fragmentManager.beginTransaction().add(R.id.container, fragment, "fragment").commit();
-
-
-        }
-        // Если фрагмент не сохранен, создаем новый экземпляр
-        if (fragment == null) {
-            fragment = new ListItemFragment();
-            fragmentManager.beginTransaction().add(R.id.container, fragment, "fragment").commit();
-        }
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, null);
     }
 
 }

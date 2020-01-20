@@ -2,7 +2,6 @@ package com.ivanilov.zennex.View.Fragment;
 
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +21,14 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.ivanilov.zennex.R;
 
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
+
+
+
+/**
+ * Фрагмент содержащий в себе MapView, исползя Api гугла мы получаем текущее местоположение, находим его на MapView и ниже выводим текущие координаты
+ * @autor Герман Иванилов
+ * @version 1.0
+ */
 
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
@@ -79,7 +86,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.d("MapDemoActivity", "Error trying to get last GPS location");
                         e.printStackTrace();
                     }
                 });

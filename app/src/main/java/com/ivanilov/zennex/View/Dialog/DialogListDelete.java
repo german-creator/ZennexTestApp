@@ -17,8 +17,14 @@ import com.ivanilov.zennex.View.Fragment.ListItemFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DialogListDelete extends DialogFragment {
 
+/**
+ * Диалог, вызываемый при длительном нажатии на элементы в ListItemFragment
+ * @autor Герман Иванилов
+ * @version 1.0
+ */
+
+public class DialogListDelete extends DialogFragment {
 
 
     @Override
@@ -37,10 +43,10 @@ public class DialogListDelete extends DialogFragment {
         buttonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    DialogListAdd dialogListAdd = new DialogListAdd();
-                    dialogListAdd.setArguments(getArguments());
-                    dialogListAdd.show(getFragmentManager(), "");
-                    dismiss();
+                DialogListAdd dialogListAdd = new DialogListAdd();
+                dialogListAdd.setArguments(getArguments());
+                dialogListAdd.show(getFragmentManager(), "");
+                dismiss();
             }
         });
 
@@ -48,7 +54,6 @@ public class DialogListDelete extends DialogFragment {
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
                 Preferences preferences = new Preferences();
                 ArrayList<String> item = preferences.getArrayStringPreferences(getContext(), "ArrayItemList");

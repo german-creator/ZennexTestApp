@@ -25,6 +25,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
+/**
+ * Фрагмент для получения данных с Api с помощью OkHttpClient их распарсивания и вывода на экран
+ * @autor Герман Иванилов
+ * @version 1.0
+ */
+
+
 public class ParsingFragment extends Fragment {
 
     ParsingFragment view;
@@ -46,11 +53,10 @@ public class ParsingFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        view = this;
-
-        ProgressBar progressBar =  getView().findViewById(R.id.Fragment_Parsing_Progress);
+        final ProgressBar progressBar = getView().findViewById(R.id.Fragment_Parsing_ProgressBar);
         final ListView listView = getView().findViewById(R.id.Fragment_Parsing_List_View);
 
+        view = this;
         OkHttpClient client = new OkHttpClient();
 
         String url = "http://quotes.zennex.ru/api/v3/bash/quotes?sort=time";
@@ -59,6 +65,8 @@ public class ParsingFragment extends Fragment {
                 .url(url)
                 .build();
 
+
+        progressBar.setVisibility(View.VISIBLE);
 
         client.newCall(request).enqueue(new Callback() {
 
@@ -86,6 +94,8 @@ public class ParsingFragment extends Fragment {
                         public void run() {
                             ParsingItemAdapter parsingItemAdapter = new ParsingItemAdapter(view, finalItems);
                             listView.setAdapter(parsingItemAdapter);
+
+                            progressBar.setVisibility(View.INVISIBLE);
 
                         }
                     });

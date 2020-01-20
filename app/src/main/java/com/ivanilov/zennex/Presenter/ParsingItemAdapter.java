@@ -11,6 +11,13 @@ import com.ivanilov.zennex.View.Fragment.ParsingFragment;
 
 import java.util.ArrayList;
 
+
+/**
+ * Кастомный адаптер для заполнения элементов ListView в ParsingFragment
+ * @autor Герман Иванилов
+ * @version 1.0
+ */
+
 public class ParsingItemAdapter extends BaseAdapter {
 
     private ParsingFragment view;

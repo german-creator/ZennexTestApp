@@ -21,6 +21,13 @@ import java.io.IOException;
 import static android.app.Activity.RESULT_OK;
 
 
+/**
+ * Фрагмент с помощью которого пользователь можно выбрать изображение из галереи или сделать фотошграфию, полученное изображение передается в ImageFragment для отображения
+ * @autor Герман Иванилов
+ * @version 1.0
+ */
+
+
 public class ScalingFragment extends Fragment {
 
     View view;

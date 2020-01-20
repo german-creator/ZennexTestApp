@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import androidx.fragment.app.Fragment;
 
@@ -13,6 +12,11 @@ import com.ivanilov.zennex.R;
 import com.ortiz.touchview.TouchImageView;
 
 
+/**
+ * Фрагмент используемый для отображения изображений полученных в ScalingFragment
+ * @autor Герман Иванилов
+ * @version 1.0
+ */
 public class ImageFragment extends Fragment {
 
     View view;

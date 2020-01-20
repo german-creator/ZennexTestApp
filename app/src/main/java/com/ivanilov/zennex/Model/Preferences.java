@@ -9,6 +9,11 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс для использования API - интерфейсов Preference
+ * @autor Герман Иванилов
+ * @version 1.0
+ */
 public class Preferences {
 
 
@@ -23,6 +28,18 @@ public class Preferences {
 
     }
 
+
+    public void setStringPreferences(Context context, String key, String s) {
+
+        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor myEditor = myPreferences.edit();
+
+
+        myEditor.putString(key, s);
+
+        myEditor.commit();
+
+    }
 
     public void setArrayStringPreferences(Context context, String key, List<String> s) {
 
@@ -66,29 +83,6 @@ public class Preferences {
 
         myEditor.commit();
 
-    }
-
-
-    public void deletPrefferences(Context context, String key) {
-        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor myEditor = myPreferences.edit();
-        myEditor.remove(key);
-        myEditor.commit();
-    }
-
-
-    public Boolean contains(Context context, String key) {
-        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        if (myPreferences.contains(key)) return true;
-        else return false;
-
-    }
-
-    public void deletAllPrefferences(Context context) {
-        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor myEditor = myPreferences.edit();
-        myEditor.clear();
-        myEditor.commit();
     }
 
 

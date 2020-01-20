@@ -20,7 +20,7 @@
             android:layout_gravity="left|center_vertical"
             android:layout_weight="1"
             android:backgroundTint="@color/colorAccent"
-            android:text="Удалить"
+            android:text="@string/delete"
             app:cornerRadius="100dp"
 
             ></Button>
@@ -37,7 +37,7 @@
             android:layout_height="60dp"
             android:layout_gravity="right|center_vertical"
             android:layout_weight="1"
-            android:text="Изменить"
+            android:text="@string/change"
             app:cornerRadius="100dp"></Button>
 
     </LinearLayout>

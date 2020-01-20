@@ -1,10 +1,15 @@
 package com.ivanilov.zennex.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+/**
+ * Класс для создания Спэшл бара при загрузки приложения, у него нет layout, у наго есть только стиль и изображение из drawable
+ * @autor Герман Иванилов
+ * @version 1.0
+ */
 public class SplashScreen extends AppCompatActivity {
 
     @Override

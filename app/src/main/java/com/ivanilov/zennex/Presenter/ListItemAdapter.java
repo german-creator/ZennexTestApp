@@ -17,6 +17,12 @@ import com.ivanilov.zennex.View.Fragment.ListItemFragment;
 
 import java.util.List;
 
+/**
+ * Кастомный адаптер для заполнения элементов ListView в ListItemFragment
+ * @autor Герман Иванилов
+ * @version 1.0
+ */
+
 public class ListItemAdapter extends BaseAdapter {
 
     private ListItemFragment view;
@@ -64,13 +70,13 @@ public class ListItemAdapter extends BaseAdapter {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                   setImageCheck(imageView);
-                   itemCheck.set(position, true);
-                   view.saveItemBoolean(itemCheck);
+                    setImageCheck(imageView);
+                    itemCheck.set(position, true);
+                    view.saveItemBoolean(itemCheck);
                 } else {
-                   setImageUnCheck(imageView);
-                   itemCheck.set(position, false);
-                   view.saveItemBoolean(itemCheck);
+                    setImageUnCheck(imageView);
+                    itemCheck.set(position, false);
+                    view.saveItemBoolean(itemCheck);
 
                 }
             }
@@ -108,12 +114,12 @@ public class ListItemAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public void setImageCheck (ImageView imageView){
+    public void setImageCheck(ImageView imageView) {
         int resID = imageView.getContext().getResources().getIdentifier("ic_broken_image_accent_24dp", "drawable", imageView.getContext().getPackageName());
         imageView.setImageResource(resID);
     }
 
-    public void setImageUnCheck (ImageView imageView){
+    public void setImageUnCheck(ImageView imageView) {
         int resID = imageView.getContext().getResources().getIdentifier("ic_image_primary_24dp", "drawable", imageView.getContext().getPackageName());
         imageView.setImageResource(resID);
     }

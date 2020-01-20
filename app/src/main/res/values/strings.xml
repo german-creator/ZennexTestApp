@@ -1,5 +1,22 @@
 <resources>
     <string name="app_name">ZennexTestApp</string>
+
+    <string name="save">Сохранить</string>
+    <string name="cancel">Отмена</string>
+    <string name="change">Изменить</string>
+    <string name="delete">Удалить</string>
+
+    <string name="take_from_gallery">Выбрать изображние из галереи</string>
+    <string name="take_from_camera">Снять изображение на камеру</string>
+    <string name="enter_title">Введите название</string>
+
+
+
+
+
+
+
+
     <color name="text_black">#333333</color>
 
 </resources>

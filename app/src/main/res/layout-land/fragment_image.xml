@@ -4,20 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="55dp"
     tools:context="com.ivanilov.zennex.View.Fragment.ListItemFragment">
 
-    <ListView
-        android:id="@+id/fragment_list_list_view"
+    <com.ortiz.touchview.TouchImageView
+        android:id="@+id/fragment_image__image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="55dp"></ListView>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fragment_list_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        app:srcCompat="@drawable/ic_add_white_24dp" />
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:scaleType="matrix"></com.ortiz.touchview.TouchImageView>
 
 </FrameLayout>

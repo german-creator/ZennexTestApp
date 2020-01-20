@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="55dp"
+    tools:context="com.ivanilov.zennex.View.Fragment.ListItemFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="80dp">
+
+        <TextView
+            android:id="@+id/Language_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Язык"
+            android:textSize="20sp"
+            ></TextView>
+
+
+        <Button
+            android:id="@+id/Language_Button_Ru"
+            style="@style/Button.Style"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:text="Изменить язык на русский"
+            android:layout_gravity="center">
+
+        </Button>
+
+        <Button
+            android:id="@+id/Language_Button_En"
+            style="@style/Button.Style"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="Change language to English"
+            android:layout_gravity="center"
+            >
+
+        </Button>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
